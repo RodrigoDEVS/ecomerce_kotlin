@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">Ecomerce App MVVM</string>
     <string name="logo_title">Ecomerce App</string>
+    <string name="login_title">Ingresar</string>
+    <string name="email">Correo Electrónico</string>
+    <string name="password">Contraseña</string>
+    <string name="login_button">Iniciar Sesión</string>
+    <string name="have_account">No tienes cuenta?</string>
+    <string name="register">Registrate</string>
 </resources>

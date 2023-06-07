@@ -1,4 +1,4 @@
-package com.rodrigo.ecomerceappmvvm.ui.theme
+package com.rodrigo.ecomerceappmvvm.presentation.ui.theme
 
 import android.app.Activity
 import android.os.Build

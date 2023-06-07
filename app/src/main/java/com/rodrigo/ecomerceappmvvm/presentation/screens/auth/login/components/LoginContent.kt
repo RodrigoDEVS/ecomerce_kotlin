@@ -37,9 +37,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.rodrigo.ecomerceappmvvm.R
+import com.rodrigo.ecomerceappmvvm.presentation.components.DefaultTextField
 import com.rodrigo.ecomerceappmvvm.presentation.ui.theme.ButtonsIndigo
 
 @Composable
@@ -89,56 +91,20 @@ fun LoginContent(paddingValues: PaddingValues){
                 Column(modifier = Modifier.padding(25.dp)) {
                     Text(text = stringResource(id = R.string.login_title).uppercase(),
                         fontWeight = FontWeight.Bold, fontSize = 18.sp)
-                    BasicTextField(
-                        modifier = Modifier
-                            .padding(top = 20.dp, bottom = 20.dp)
-                            .fillMaxWidth()
-                            .height(40.dp)
-                            .drawBehind {
-                                val strokeWith = 1.dp.toPx()
-                                val y = size.height - strokeWith / 2
-                                drawLine(
-                                    color = Color.Gray,
-                                    start = Offset(0f, y),
-                                    end = Offset(size.width, y),
-                                    strokeWidth = strokeWith
-                                )
-                            },
-                        value = "", onValueChange = {}, decorationBox = {
-                            Row(
-                                verticalAlignment = Alignment.CenterVertically
-                            ) {
-                                Icon(
-                                    tint = ButtonsIndigo,
-                                    modifier = Modifier.padding(end = 5.dp),
-                                    imageVector = Icons.Default.Email, contentDescription = "")
-                                Text(text = stringResource(id = R.string.email), color = Color.Gray)
-                            }
-                        })
-                    BasicTextField(
-                        modifier = Modifier
-                            .padding(bottom = 20.dp)
-                            .height(40.dp)
-                            .fillMaxWidth()
-                            .border(
-                                width = 1.dp,
-                                color = Color.Gray,
-                                shape = RoundedCornerShape(4.dp)
-                            ),
-                        value = "", onValueChange = {},
-                        decorationBox = {
-                            Row(
-                                modifier = Modifier.fillMaxWidth(),
-                                verticalAlignment = Alignment.CenterVertically
-                            ) {
-                                Icon(
-                                    tint = ButtonsIndigo,
-                                    modifier = Modifier.padding(end = 5.dp),
-                                    imageVector = Icons.Default.Lock, contentDescription = "")
-                                Text(text = stringResource(id = R.string.password),
-                                    color = Color.Gray)
-                            }
-                        })
+                    DefaultTextField(
+                        modifier = Modifier.fillMaxWidth().padding(top = 20.dp, bottom = 5.dp),
+                        value = "",
+                        onValueChange = {},
+                        label = stringResource(id = R.string.email),
+                        icon = Icons.Default.Email,
+                        keyboardType = KeyboardType.Email)
+                    DefaultTextField(
+                        modifier = Modifier.fillMaxWidth().padding(bottom = 10.dp),
+                        value = "",
+                        onValueChange = {},
+                        label = stringResource(id = R.string.password),
+                        icon = Icons.Default.Lock,
+                        keyboardType = KeyboardType.Password)
                     Button(
                         colors = ButtonDefaults.buttonColors(containerColor = ButtonsIndigo),
                         modifier = Modifier.fillMaxWidth(),
@@ -149,7 +115,7 @@ fun LoginContent(paddingValues: PaddingValues){
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(top = 30.dp),
+                            .padding(top = 10.dp),
                         horizontalArrangement = Arrangement.Center
                     ) {
                         Text(

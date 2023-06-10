@@ -1,6 +1,7 @@
 package com.rodrigo.ecomerceappmvvm.presentation.screens.auth.login.components
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -16,8 +17,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Lock
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
@@ -36,15 +35,17 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.rodrigo.ecomerceappmvvm.R
 import com.rodrigo.ecomerceappmvvm.presentation.components.DefaultButton
 import com.rodrigo.ecomerceappmvvm.presentation.components.DefaultTextField
 import com.rodrigo.ecomerceappmvvm.presentation.screens.auth.login.LoginPage
-import com.rodrigo.ecomerceappmvvm.presentation.ui.theme.ButtonsIndigo
+import com.rodrigo.ecomerceappmvvm.presentation.screens.navigation.screen.AuthScreen
 import com.rodrigo.ecomerceappmvvm.presentation.ui.theme.EcomerceAppMVVMTheme
 
 @Composable
-fun LoginContent(paddingValues: PaddingValues){
+fun LoginContent(navController: NavHostController, paddingValues: PaddingValues){
     Box(modifier = Modifier.padding(paddingValues = paddingValues)){
         Image(
             modifier = Modifier.fillMaxSize(),
@@ -122,7 +123,9 @@ fun LoginContent(paddingValues: PaddingValues){
                             modifier = Modifier.padding(end = 10.dp),
                             text = stringResource(id = R.string.have_account)
                         )
-                        Text(text = stringResource(id = R.string.register), color = Color.Blue,
+                        Text(
+                            modifier = Modifier.clickable { navController.navigate(route = AuthScreen.Register.route) },
+                            text = stringResource(id = R.string.register), color = Color.Blue,
                             fontWeight = FontWeight.Bold, fontStyle = FontStyle.Italic)
                     }
                 }
@@ -136,6 +139,6 @@ fun LoginContent(paddingValues: PaddingValues){
 @Composable
 fun LoginContentPreview() {
     EcomerceAppMVVMTheme {
-        LoginPage()
+        LoginPage(rememberNavController())
     }
 }

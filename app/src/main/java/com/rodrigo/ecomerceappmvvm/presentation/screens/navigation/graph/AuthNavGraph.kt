@@ -18,7 +18,7 @@ fun NavGraphBuilder.AuthNavGraph(navController: NavHostController){
             LoginPage(navController)
         }
         composable(route = AuthScreen.Register.route){
-            RegisterPage()
+            RegisterPage(navController)
         }
     }
 }

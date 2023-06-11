@@ -13,6 +13,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.compose.rememberNavController
 import com.rodrigo.ecomerceappmvvm.R
 import com.rodrigo.ecomerceappmvvm.presentation.screens.auth.register.RegisterPage
 
@@ -33,5 +34,5 @@ fun RegisterContent(paddingValues: PaddingValues){
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun RegisterPagePreview(){
-    RegisterPage()
+    RegisterPage(rememberNavController())
 }

@@ -19,6 +19,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.rodrigo.ecomerceappmvvm.presentation.components.DefaultTopBar
 import com.rodrigo.ecomerceappmvvm.presentation.screens.auth.register.components.RegisterContent
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -26,20 +27,10 @@ import com.rodrigo.ecomerceappmvvm.presentation.screens.auth.register.components
 fun RegisterPage(navController: NavHostController){
     Scaffold(
         topBar = {
-            TopAppBar(
-                colors = TopAppBarDefaults.mediumTopAppBarColors(containerColor = Color.White),
-                navigationIcon = {
-                    IconButton(onClick = { navController.popBackStack() }) {
-                        Icon(
-                            imageVector = Icons.Default.ArrowBack,
-                            contentDescription = "",
-                            tint = Color.Black
-                            )
-                    }
-                },
-                title = {
-                    Text(text = "Página de Registro", fontSize = 19.sp)
-                }
+            DefaultTopBar(
+                title = "Página de Registro",
+                upAvailable = true,
+                navController = navController
             )
         }
     ) {

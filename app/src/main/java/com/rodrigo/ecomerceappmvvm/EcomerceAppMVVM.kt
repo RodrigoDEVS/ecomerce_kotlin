@@ -1,4 +1,8 @@
 package com.rodrigo.ecomerceappmvvm
 
-class EcomerceAppMVVM {
+import android.app.Application
+import dagger.hilt.android.HiltAndroidApp
+
+@HiltAndroidApp
+class EcomerceAppMVVM: Application() {
 }

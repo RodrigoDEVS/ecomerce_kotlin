@@ -10,7 +10,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Lock
@@ -88,7 +90,9 @@ fun RegisterContent(paddingValues: PaddingValues){
                 ),
                 colors = cardColors(containerColor = Color.LightGray.copy(alpha = 0.8f))
             ) {
-                Column(modifier = Modifier.padding(25.dp)) {
+                Column(modifier = Modifier
+                    .padding(25.dp)
+                    .verticalScroll(rememberScrollState())) {
                     Text(text = stringResource(id = R.string.form_register).uppercase(),
                         fontWeight = FontWeight.Bold,
                         fontSize = 18.sp)

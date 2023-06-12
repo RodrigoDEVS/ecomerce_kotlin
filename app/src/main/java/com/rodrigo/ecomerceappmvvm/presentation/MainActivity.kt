@@ -12,7 +12,9 @@ import androidx.navigation.compose.rememberNavController
 import com.rodrigo.ecomerceappmvvm.presentation.screens.auth.login.LoginPage
 import com.rodrigo.ecomerceappmvvm.presentation.screens.navigation.graph.RootNavGraph
 import com.rodrigo.ecomerceappmvvm.presentation.ui.theme.EcomerceAppMVVMTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     private lateinit var navController: NavHostController

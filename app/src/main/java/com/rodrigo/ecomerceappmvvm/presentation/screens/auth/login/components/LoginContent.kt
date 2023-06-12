@@ -1,5 +1,6 @@
 package com.rodrigo.ecomerceappmvvm.presentation.screens.auth.login.components
 
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -23,12 +24,14 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.ColorMatrix
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
@@ -52,6 +55,13 @@ import com.rodrigo.ecomerceappmvvm.presentation.ui.theme.EcomerceAppMVVMTheme
 fun LoginContent(navController: NavHostController, paddingValues: PaddingValues, vm: LoginViewModel = hiltViewModel()){
 
     val state = vm.state
+    val context = LocalContext.current
+
+    LaunchedEffect(key1 = vm.errorMessage){
+        if (vm.errorMessage != ""){
+            Toast.makeText(context, vm.errorMessage, Toast.LENGTH_LONG).show()
+        }
+    }
 
     Box(modifier = Modifier.padding(paddingValues = paddingValues)){
         Image(
@@ -117,10 +127,11 @@ fun LoginContent(navController: NavHostController, paddingValues: PaddingValues,
                         onValueChange = {text -> vm.onPasswordInput(text)},
                         label = stringResource(id = R.string.password),
                         icon = Icons.Default.Lock,
-                        keyboardType = KeyboardType.Password)
+                        keyboardType = KeyboardType.Password,
+                        hideText = true)
                     DefaultButton(
                         modifier = Modifier.fillMaxWidth(),
-                        onClick = { /*TODO*/ },
+                        onClick = { vm.validateForm() },
                         text = stringResource(id = R.string.login_button))
                     Row(
                         modifier = Modifier

@@ -38,14 +38,19 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
 import com.rodrigo.ecomerceappmvvm.R
 import com.rodrigo.ecomerceappmvvm.presentation.components.DefaultButton
 import com.rodrigo.ecomerceappmvvm.presentation.components.DefaultTextField
 import com.rodrigo.ecomerceappmvvm.presentation.screens.auth.register.RegisterPage
+import com.rodrigo.ecomerceappmvvm.presentation.screens.auth.register.RegisterViewModel
 
 @Composable
-fun RegisterContent(paddingValues: PaddingValues){
+fun RegisterContent(paddingValues: PaddingValues, vm: RegisterViewModel = hiltViewModel()){
+
+    val state = vm.state
+
     Box(modifier = Modifier
         .padding(
             paddingValues = paddingValues
@@ -98,49 +103,51 @@ fun RegisterContent(paddingValues: PaddingValues){
                         fontSize = 18.sp)
                     DefaultTextField(
                         modifier = Modifier.fillMaxWidth(),
-                        value = "",
-                        onValueChange = {},
+                        value = state.names,
+                        onValueChange = { vm.onNameInput(it) },
                         label = stringResource(id = R.string.form_names),
                         icon = Icons.Default.Person
                     )
                     DefaultTextField(
                         modifier = Modifier.fillMaxWidth(),
-                        value = "",
-                        onValueChange = {},
+                        value = state.lastNames,
+                        onValueChange = {vm.onLastNameInput(it)},
                         label = stringResource(id = R.string.form_lastnames),
                         icon = Icons.Outlined.Person
                     )
                     DefaultTextField(
                         modifier = Modifier.fillMaxWidth(),
-                        value = "",
-                        onValueChange = {},
+                        value = state.email,
+                        onValueChange = {vm.onEmailInput(it)},
                         label = stringResource(id = R.string.form_email),
                         icon = Icons.Default.Email,
                         keyboardType = KeyboardType.Email
                     )
                     DefaultTextField(
                         modifier = Modifier.fillMaxWidth(),
-                        value = "",
-                        onValueChange = {},
+                        value = state.phone,
+                        onValueChange = {vm.onPhoneInput(it)},
                         label = stringResource(id = R.string.form_phone),
                         icon = Icons.Default.Phone,
                         keyboardType = KeyboardType.Number
                     )
                     DefaultTextField(
                         modifier = Modifier.fillMaxWidth(),
-                        value = "",
-                        onValueChange = {},
+                        value = state.password,
+                        onValueChange = {vm.onPasswordInput(it)},
                         label = stringResource(id = R.string.password),
                         icon = Icons.Default.Lock,
-                        keyboardType = KeyboardType.Password
+                        keyboardType = KeyboardType.Password,
+                        hideText = true
                     )
                     DefaultTextField(
                         modifier = Modifier.fillMaxWidth(),
-                        value = "",
-                        onValueChange = {},
+                        value = state.confirmPassword,
+                        onValueChange = {vm.onConfirmPasswordInput(it)},
                         label = stringResource(id = R.string.form_confirm_password),
                         icon = Icons.Outlined.Lock,
-                        keyboardType = KeyboardType.Password
+                        keyboardType = KeyboardType.Password,
+                        hideText = true
                     )
                     DefaultButton(
                         modifier = Modifier

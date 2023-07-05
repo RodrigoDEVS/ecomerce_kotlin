@@ -1,5 +1,6 @@
 package com.rodrigo.ecomerceappmvvm.presentation.screens.auth.register.components
 
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -25,12 +26,14 @@ import androidx.compose.material3.CardColors
 import androidx.compose.material3.CardDefaults.cardColors
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.ColorMatrix
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -50,6 +53,14 @@ import com.rodrigo.ecomerceappmvvm.presentation.screens.auth.register.RegisterVi
 fun RegisterContent(paddingValues: PaddingValues, vm: RegisterViewModel = hiltViewModel()){
 
     val state = vm.state
+
+    val context = LocalContext.current
+
+    LaunchedEffect(key1 = vm.errorMessage){
+        if (vm.errorMessage != ""){
+            Toast.makeText(context, vm.errorMessage, Toast.LENGTH_LONG).show()
+        }
+    }
 
     Box(modifier = Modifier
         .padding(
@@ -153,7 +164,7 @@ fun RegisterContent(paddingValues: PaddingValues, vm: RegisterViewModel = hiltVi
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(top = 10.dp),
-                        onClick = {  },
+                        onClick = { vm.validateForm() },
                         text = stringResource(id = R.string.form_confirm).uppercase())
                 }
             }

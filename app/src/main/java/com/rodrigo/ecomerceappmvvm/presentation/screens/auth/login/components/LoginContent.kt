@@ -131,7 +131,7 @@ fun LoginContent(navController: NavHostController, paddingValues: PaddingValues,
                         hideText = true)
                     DefaultButton(
                         modifier = Modifier.fillMaxWidth(),
-                        onClick = { vm.validateForm() },
+                        onClick = { vm.login() },
                         text = stringResource(id = R.string.login_button))
                     Row(
                         modifier = Modifier

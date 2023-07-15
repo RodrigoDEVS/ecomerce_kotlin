@@ -6,6 +6,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.rodrigo.ecomerceappmvvm.presentation.screens.auth.login.LoginPage
 import com.rodrigo.ecomerceappmvvm.presentation.screens.auth.register.RegisterPage
+import com.rodrigo.ecomerceappmvvm.presentation.screens.home.HomePage
 import com.rodrigo.ecomerceappmvvm.presentation.screens.navigation.Graph
 import com.rodrigo.ecomerceappmvvm.presentation.screens.navigation.screen.AuthScreen
 
@@ -19,6 +20,9 @@ fun NavGraphBuilder.AuthNavGraph(navController: NavHostController){
         }
         composable(route = AuthScreen.Register.route){
             RegisterPage(navController)
+        }
+        composable(route = AuthScreen.Home.route){
+            HomePage(navController)
         }
     }
 }

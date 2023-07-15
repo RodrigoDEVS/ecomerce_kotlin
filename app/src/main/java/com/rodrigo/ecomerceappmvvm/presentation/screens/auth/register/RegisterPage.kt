@@ -20,6 +20,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.rodrigo.ecomerceappmvvm.presentation.components.DefaultTopBar
+import com.rodrigo.ecomerceappmvvm.presentation.screens.auth.register.components.Register
 import com.rodrigo.ecomerceappmvvm.presentation.screens.auth.register.components.RegisterContent
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -36,6 +37,7 @@ fun RegisterPage(navController: NavHostController){
     ) {
         paddingValues -> RegisterContent(paddingValues = paddingValues)
     }
+    Register(navController = navController)
 }
 @Preview(showSystemUi = true, showBackground = true)
 @Composable

@@ -5,8 +5,8 @@ import android.util.Patterns
 import androidx.compose.runtime.*
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.rodrigo.ecomerceappmvvm.domain.model.User
-import com.rodrigo.ecomerceappmvvm.domain.util.Response
+import com.rodrigo.ecomerceappmvvm.domain.model.AuthResponse
+import com.rodrigo.ecomerceappmvvm.domain.util.Request
 import com.rodrigo.ecomerceappmvvm.domain.useCase.auth.AuthUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -19,17 +19,16 @@ class LoginViewModel @Inject constructor(private val authUseCase: AuthUseCase): 
         private set
 
     var errorMessage by mutableStateOf("")
-        private set
 
-    var loginResponse by mutableStateOf<Response<User>?>(null)
+    var loginRequest by mutableStateOf<Request<AuthResponse>?>(null)
         private set
 
     fun login() = viewModelScope.launch {
         if(isValidForm()){
-            loginResponse = Response.Loading
+            loginRequest = Request.Loading
             val result = authUseCase.login(state.email, state.password)
-            loginResponse = result
-            Log.d("LoginViewModel", "Response: $loginResponse")
+            loginRequest = result
+            Log.d("LoginViewModel", "Response: $loginRequest")
         }
     }
 
